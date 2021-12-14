@@ -158,6 +158,7 @@ private val getItemList: () -> MutableList<ItemModel>): RecyclerView.ItemDecorat
             display?.getMetrics(outMetrics)
         }else{
             val display = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
+            display?.getMetrics(outMetrics)
         }
         return outMetrics.widthPixels
     }

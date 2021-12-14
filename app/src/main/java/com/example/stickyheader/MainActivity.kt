@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         itemSectionDecoration = ItemSectionDecoration(this){
             adapter.list
         }
+        recyclerView.addItemDecoration(itemSectionDecoration)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }
