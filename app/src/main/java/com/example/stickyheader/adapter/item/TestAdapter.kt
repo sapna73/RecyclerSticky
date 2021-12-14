@@ -8,6 +8,7 @@ import com.example.stickyheader.R
 
 class TestAdapter(private val onLoadMore: () -> Unit): RecyclerView.Adapter<ItemViewHolder>() {
     val list = mutableListOf<ItemModel>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_holder_item, parent, false))
     }
@@ -25,7 +26,6 @@ class TestAdapter(private val onLoadMore: () -> Unit): RecyclerView.Adapter<Item
         return list.size
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
     fun reload(list: MutableList<ItemModel>){
         this.list.clear()
@@ -33,9 +33,8 @@ class TestAdapter(private val onLoadMore: () -> Unit): RecyclerView.Adapter<Item
         notifyDataSetChanged()
     }
 
-    private fun onLoadMore() {
-        this.list.addAll(list)
-        notifyItemRangeChanged(this.list.size - list.size + 1, list.size)
+    fun loadMore(list: MutableList<ItemModel>) {
+        this.list.addAll(this.list)
+        notifyItemRangeChanged(this.list.size - this.list.size + 1, this.list.size)
     }
-
 }

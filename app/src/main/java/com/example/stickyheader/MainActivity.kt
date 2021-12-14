@@ -55,7 +55,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadMore(){
-        val list = dummyData(adapter.itemCount, 20)
+        val list = dummyData(adapter.itemCount, 50)
+        recyclerView.post {
+            adapter.loadMore(list)
+        }
 
     }
 
@@ -83,4 +86,5 @@ class MainActivity : AppCompatActivity() {
     private fun getDummyDataString(day: String): String {
         return "2021-12-$day"
     }
+
 }
