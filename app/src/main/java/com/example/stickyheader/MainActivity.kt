@@ -4,11 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.stickyheader.adapter.item.ItemModel
 import com.example.stickyheader.adapter.item.ItemSectionDecoration
 import com.example.stickyheader.adapter.item.TestAdapter
 
 class MainActivity : AppCompatActivity() {
+
+    private val swipeRefreshLayout: SwipeRefreshLayout by lazy {
+        findViewById(R.id.swipeTo)
+    }
 
     private val recyclerView: RecyclerView by lazy {
         findViewById(R.id.recyclerView)
@@ -27,6 +32,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initList(){
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
+            reload()
+        }
         layoutManager = LinearLayoutManager(this)
         adapter = TestAdapter {
             loadMore()
